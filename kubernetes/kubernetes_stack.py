@@ -155,7 +155,7 @@ class KubernetesStack(Stack):
             role_name="eks-admin-role",
             assumed_by=_iam.CompositePrincipal(
                 _iam.ServicePrincipal("ec2.amazonaws.com"),
-                _iam.ArnPrincipal(f"arn:aws:iam::{Aws.ACCOUNT_ID}:user/Derrick")
+                _iam.ArnPrincipal(f"arn:aws:iam::{Aws.ACCOUNT_ID}:user/{'add your eks admin name'}")
             ),
             managed_policies=policy_statements.eks_master_statement()               
         )
@@ -462,13 +462,6 @@ class KubernetesStack(Stack):
         cas_yaml = read_multiple_blocks_of_yaml(cas_config)
         for i in range(len(cas_yaml)):
             cas_manifest = self.eks_cluster.add_manifest(f"cas-config-{i}", cas_yaml[i])
-
-
-
-
-
-
-
 
 
 
